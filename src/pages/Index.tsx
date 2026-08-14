@@ -3,9 +3,17 @@ import { BadgesGrid } from "@/components/BadgesGrid";
 import { ProfileSong } from "@/components/ProfileSong";
 import { useState } from 'react';
 import { motion } from "framer-motion";
+import { TabbedPixelPanel } from "@/components/TabbedPixelPanel";
 import { VIDEO_DATA } from '@/data/videos'; // Ajuste o caminho conforme sua pasta
 import { SHORTS_DATA } from '@/data/videos'; // Ajuste o caminho conforme sua pasta
 import { SOCIAL_DATA } from '@/data/social'; // Ajuste o caminho conforme sua pasta
+import {
+  VideosGrid,
+  ImagesGrid,
+  VIDEO_TAGS,
+  IMAGE_TAGS,
+  FilterMenu,
+} from "@/components/MediaTabs";
 
 
 
@@ -20,6 +28,8 @@ import showReel from "@/assets/video1.mp4";
 
 
 const Index = () => {
+  const [videoFilters, setVideoFilters] = useState<string[]>([]);
+  const [imageFilters, setImageFilters] = useState<string[]>([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   // Função para facilitar o fechamento
@@ -373,33 +383,61 @@ const Index = () => {
           <div className="col-span-12 md:col-span-8 lg:col-span-9 space-y-4">
             {/* Lore & Blurbs combined */}
             <PixelPanel title={<span>// showreel</span>}>
-            <div className="relative w-full aspect-video bg-space-deep overflow-hidden flex items-center justify-center">
+              <div className="relative w-full aspect-video bg-space-deep overflow-hidden flex items-center justify-center">
 
-<iframe
-  className="absolute pointer-events-none"
-  style={{
-    left: "-10%",
-    width: "120%",
-    height: "100%",
-  }}
-  src="https://www.youtube.com/embed/nTZsMQ8MzwM?autoplay=1&mute=1&loop=1&playlist=nTZsMQ8MzwM&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0"
-  title="novo video"
-  allow="autoplay; encrypted-media; picture-in-picture"
-  frameBorder={0}
-/>
+                <iframe
+                  className="absolute pointer-events-none"
+                  style={{
+                    left: "-10%",
+                    width: "120%",
+                    height: "100%",
+                  }}
+                  src="https://www.youtube.com/embed/nTZsMQ8MzwM?autoplay=1&mute=1&loop=1&playlist=nTZsMQ8MzwM&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0"
+                  title="novo video"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  frameBorder={0}
+                />
 
-              <div
-                className="absolute inset-0 pointer-events-none opacity-[0.12] z-10"
-                style={{
-                  backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%)',
-                  backgroundSize: '100% 4px'
-                }}
-              ></div>
-            </div>
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-[0.12] z-10"
+                  style={{
+                    backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%)',
+                    backgroundSize: '100% 4px'
+                  }}
+                ></div>
+              </div>
             </PixelPanel>
 
 
-
+            <TabbedPixelPanel
+              tabs={[
+                {
+                  id: "videos",
+                  label: "cind's Videos",
+                  rightSlot: (
+                    <FilterMenu
+                      tags={VIDEO_TAGS}
+                      selected={videoFilters}
+                      onChange={setVideoFilters}
+                    />
+                  ),
+                  content: <VideosGrid selected={videoFilters} />,
+                },
+                {
+                  id: "images",
+                  label: "cind's Images",
+                  rightSlot: (
+                    <FilterMenu
+                      tags={IMAGE_TAGS}
+                      selected={imageFilters}
+                      onChange={setImageFilters}
+                    />
+                  ),
+                  content: <ImagesGrid selected={imageFilters} />,
+                },
+              ]}
+            />
+            
             {/* Videos (horizontal) */}
             <div className="relative">
               <PixelPanel
