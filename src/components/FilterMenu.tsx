@@ -20,25 +20,25 @@ export const FilterMenu = ({ tags, selected, onChange }: FilterMenuProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          type="button"
-          className={cn(
-            "inline-flex items-center gap-1 px-2 py-[3px] rounded-[4px]",
-            "border-2 border-[hsl(var(--panel-edge-soft))]",
-            "bg-[hsl(var(--white))] text-hot-pink pixel-text text-[8px] uppercase",
-            "hover:bg-[hsl(var(--hot-pink))] hover:text-white transition-colors",
-          )}
-          style={{ textShadow: "0 0 6px hsl(var(--hot-pink) / 0.5)" }}
-          aria-label="Filter items"
-        >
-          <Filter className="w-3 h-3" />
-          filter
-          {count > 0 && (
-            <span className="ml-1 px-1 rounded-sm bg-hot-pink text-white text-[8px] leading-none">
-              {count}
-            </span>
-          )}
-        </button>
+     <button
+      type="button"
+      className={cn(
+        "inline-flex items-center gap-1 px-2 py-[3px] rounded-[4px]",
+        "border-2 border-[hsl(var(--panel-edge-soft))]",
+        "bg-white text-black pixel-text text-[8px] uppercase",
+        "hover:bg-[hsl(var(--hot-pink))] hover:text-white transition-colors",
+      )}
+      style={{ textShadow: "none" }}
+      aria-label="Filter items"
+    >
+      <Filter className="w-3 h-3" />
+      filter
+      {count > 0 && (
+        <span className="ml-1 px-1 rounded-sm bg-hot-pink text-white text-[8px] leading-none">
+          {count}
+        </span>
+      )}
+    </button>
       </PopoverTrigger>
       <PopoverContent
         align="end"
