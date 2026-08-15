@@ -25,7 +25,7 @@ export const FilterMenu = ({ tags, selected, onChange }: FilterMenuProps) => {
           className={cn(
             "inline-flex items-center gap-1 px-2 py-[3px] rounded-[4px]",
             "border-2 border-[hsl(var(--panel-edge-soft))]",
-            "bg-[hsl(var(--card))] text-hot-pink pixel-text text-[8px] uppercase",
+            "bg-[hsl(var(--white))] text-hot-pink pixel-text text-[8px] uppercase",
             "hover:bg-[hsl(var(--hot-pink))] hover:text-white transition-colors",
           )}
           style={{ textShadow: "0 0 6px hsl(var(--hot-pink) / 0.5)" }}
