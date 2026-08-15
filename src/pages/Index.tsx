@@ -417,11 +417,11 @@ const Index = () => {
                     tags={VIDEO_TAGS}
                     selected={videoFilters}
                     onChange={setVideoFilters}
+
                   />
                 }
               >
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-1">
-                  {VIDEO_DATA
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-1">1
                     // Lógica para filtrar os vídeos de acordo com os filtros selecionados
                     .filter((v) =>
                       videoFilters.length === 0 || videoFilters.some(tag => v.tags?.includes(tag))
