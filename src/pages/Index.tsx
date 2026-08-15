@@ -408,36 +408,6 @@ const Index = () => {
               </div>
             </PixelPanel>
 
-
-            <TabbedPixelPanel
-              tabs={[
-                {
-                  id: "videos",
-                  label: "cind's Videos",
-                  rightSlot: (
-                    <FilterMenu
-                      tags={VIDEO_TAGS}
-                      selected={videoFilters}
-                      onChange={setVideoFilters}
-                    />
-                  ),
-                  content: <VideosGrid selected={videoFilters} />,
-                },
-                {
-                  id: "images",
-                  label: "cind's Images",
-                  rightSlot: (
-                    <FilterMenu
-                      tags={IMAGE_TAGS}
-                      selected={imageFilters}
-                      onChange={setImageFilters}
-                    />
-                  ),
-                  content: <ImagesGrid selected={imageFilters} />,
-                },
-              ]}
-            />
-
             {/* Videos (horizontal) */}
             <div className="relative">
               <PixelPanel
