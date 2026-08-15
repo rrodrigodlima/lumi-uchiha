@@ -26,7 +26,7 @@ export const FilterMenu = ({ tags, selected, onChange }: FilterMenuProps) => {
             "inline-flex items-center gap-1 px-2 py-[3px] rounded-[4px]",
             "border-2 border-[hsl(var(--panel-edge-soft))]",
             "text-black pixel-text text-[8px] uppercase",
-            "hover:bg-[hsl(var(--hot-pink))] hover:text-white transition-colors",
+            "hover:bg-[hsl(0deg 0% 100%)] hover:text-white transition-colors",
           )}
           style={{ backgroundColor: "#ffffff", textShadow: "none" }}
           aria-label="Filter items"
