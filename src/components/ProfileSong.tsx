@@ -83,19 +83,19 @@ export const ProfileSong = () => {
 
           <br />
 
-{/* Waveform Animada com o Equalizador */}
-<div className="eq" aria-hidden>
-  {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-    <span
-      key={i}
-      className={`eq-bar ${isPlaying ? "eq-bar--on" : ""}`}
-      style={{
-        animationDelay: `${i * 0.11}s`,
-        animationDuration: `${0.5 + (i % 4) * 0.12}s`
-      }}
-    />
-  ))}
-</div>
+          {/* Waveform Animada com o Equalizador */}
+          <div className="eq" aria-hidden>
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+              <span
+                key={i}
+                className={`eq-bar ${isPlaying ? "eq-bar--on" : ""}`}
+                style={{
+                  animationDelay: `${i * 0.11}s`,
+                  animationDuration: `${0.5 + (i % 4) * 0.12}s`
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
