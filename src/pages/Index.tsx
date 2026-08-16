@@ -211,7 +211,7 @@ const Index = () => {
                       filter: 'drop-shadow(0 0 1px rgba(255, 0, 110, 0.2))'
                     }}
                     className="digital-text text-xs text-white/50 italic mt-2">
-                    Currently @ Vivo Keyd Stars
+                    Previously at @ Keyd Stars
                   </p>
                 </div>
 
@@ -410,91 +410,92 @@ const Index = () => {
 
             {/* Videos (horizontal) */}
             <div className="relative">
-              <PixelPanel
-                title={<span>// last Videos</span>}
-                rightSlot={
-                  <FilterMenu
-                    tags={VIDEO_TAGS}
-                    selected={videoFilters}
-                    onChange={setVideoFilters}
+<PixelPanel
+  title={<span>// last Videos</span>}
+  rightSlot={
+    <FilterMenu
+      tags={VIDEO_TAGS}
+      selected={videoFilters}
+      onChange={setVideoFilters}
+    />
+  }
+>
+  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-1">
+    {VIDEO_DATA
+      .filter((v) => {
+        // Se nenhum filtro estiver selecionado, mostra todos
+        if (videoFilters.length === 0) return true;
+        
+        // Se houver filtros, filtra pelos vídeos que contêm pelo menos uma das tags
+        return videoFilters.some((tag) => v.tags?.includes(tag));
+      })
+      // Limita estritamente a exibição a apenas 9 vídeos na tela
+      .slice(0, 9) 
+      .map((v) => (
+        <button
+          key={v.id}
+          onClick={() => setSelectedVideo(v.id)}
+          className="group relative text-left border-2 border-panel-edge/40 bg-black overflow-hidden hover:border-hot-pink transition-all active:scale-[0.98] focus:outline-none shadow-xl"
+        >
+          <div className="relative aspect-video overflow-hidden flex items-center justify-center bg-black">
 
-                  />
-                }
-              >
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-1">1
-                    // Lógica para filtrar os vídeos de acordo com os filtros selecionados
-                    .filter((v) =>
-                      videoFilters.length === 0 || videoFilters.some(tag => v.tags?.includes(tag))
-                    )
-                    .map((v) => (
-                      <button
-                        key={v.id}
-                        onClick={() => setSelectedVideo(v.id)}
-                        className="group relative text-left border-2 border-panel-edge/40 bg-black overflow-hidden hover:border-hot-pink transition-all active:scale-[0.98] focus:outline-none shadow-xl"
-                      >
-                        <div className="relative aspect-video overflow-hidden flex items-center justify-center bg-black">
+            {/* Thumbnail em Qualidade Máxima (HD) */}
+            <img
+              src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`}
+              className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+              alt={v.title}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
+              }}
+            />
 
-                          {/* Thumbnail em Qualidade Máxima (HD) */}
-                          <img
-                            src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`}
-                            className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-700 ease-out"
-                            alt={v.title || v.channel}
-                            // Fallback: Se o vídeo não tiver thumb em 720p/1080p, ele carrega a hqdefault
-                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
-                            }}
-                          />
+            {/* Camada de Scanlines (Efeito TV Retrô) */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-[0.12] z-10"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%)',
+                backgroundSize: '100% 4px'
+              }}
+            ></div>
 
-                          {/* Camada de Scanlines (Efeito TV Retrô) */}
-                          <div
-                            className="absolute inset-0 pointer-events-none opacity-[0.12] z-10"
-                            style={{
-                              backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%)',
-                              backgroundSize: '100% 4px'
-                            }}
-                          ></div>
+            {/* Botão Play Central (Estilo Clássico) */}
+            <div className="relative z-20 w-10 h-7 bg-pink-600/90 flex items-center justify-center rounded shadow-[0_0_15px_rgba(255,0,0,0.5)] group-hover:bg-red-500 group-hover:scale-125 transition-all duration-300">
+              <span className="text-white text-[10px]">▶</span>
+            </div>
 
-                          {/* Botão Play Central (Estilo Clássico) */}
-                          <div className="relative z-20 w-10 h-7 bg-pink-600/90 flex items-center justify-center rounded shadow-[0_0_15px_rgba(255,0,0,0.5)] group-hover:bg-red-500 group-hover:scale-125 transition-all duration-300">
-                            <span className="text-white text-[10px]">▶</span>
-                          </div>
+            {/* Barra HUD (Degradê de Preto com Info) */}
+            <div className="absolute bottom-0 left-0 right-0 z-30 p-2.5 bg-gradient-to-t from-black via-black/85 to-transparent">
+              <div className="flex items-center gap-1.5">
+                <span
+                  className="pixel-text text-[8px] px-1.5 py-0.5 border border-hot-pink/60 bg-black/40 uppercase tracking-[0.2em]"
+                  style={{
+                    color: '#FF006E',
+                    fontFamily: "'VT323', monospace",
+                  }}
+                >
+                  video
+                </span>
 
-                          {/* Barra HUD (Degradê de Preto com Info) */}
-                          <div className="absolute bottom-0 left-0 right-0 z-30 p-2.5 bg-gradient-to-t from-black via-black/85 to-transparent">
-                            <div className="flex items-center gap-1.5">
-                              {/* TAG VIDEO - Mais discreta e fina */}
-                              <span
-                                className="pixel-text text-[8px] px-1.5 py-0.5 border border-hot-pink/60 bg-black/40 uppercase tracking-[0.2em]"
-                                style={{
-                                  color: '#FF006E',
-                                  fontFamily: "'VT323', monospace",
-                                }}
-                              >
-                                video
-                              </span>
-
-                              {/* TÍTULO DO CANAL - Elegante e harmônico */}
-                              <h3
-                                className="digital-text text-[13px] text-white/90 leading-tight truncate mt-1.5"
-                                style={{
-                                  fontFamily: 'Georgia, serif',
-                                  fontWeight: 'bold',
-                                  fontStyle: 'italic',
-                                  // Um glow muito leve, quase imperceptível, apenas para separar do fundo
-                                  textShadow: '0 1px 3px rgba(0,0,0,0.8)',
-                                  letterSpacing: '0.02em'
-                                }}
-                              >
-                                {v.channel}
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                </div>
-              </PixelPanel>
+                <h3
+                  className="digital-text text-[13px] text-white/90 leading-tight truncate mt-1.5"
+                  style={{
+                    fontFamily: 'Georgia, serif',
+                    fontWeight: 'bold',
+                    fontStyle: 'italic',
+                    textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+                    letterSpacing: '0.02em'
+                  }}
+                >
+                  {v.channel}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </button>
+      ))}
+  </div>
+</PixelPanel>
 
               {/* --- MODAL DO PLAYER --- */}
               {selectedVideo && (
@@ -580,9 +581,9 @@ const Index = () => {
                       {/* HUD de Info com Degradê Preto Pesado */}
                       <div className="absolute bottom-0 left-0 right-0 z-30 p-3 bg-gradient-to-t from-black via-black/90 to-transparent">
                         <div className="flex items-center gap-1.5 mb-1">
-                          <span className="pixel-text text-[6px] text-hot-pink border border-hot-pink/40 bg-black/80 px-1 uppercase">
+                          {/* <span className="pixel-text text-[6px] text-hot-pink border border-hot-pink/40 bg-black/80 px-1 uppercase">
                             video
-                          </span>
+                          </span> */}
                           <h3
                             className="digital-text text-[13px] text-white/90 leading-tight truncate mt-1.5"
                             style={{
