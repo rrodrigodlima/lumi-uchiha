@@ -83,16 +83,16 @@ export const ProfileSong = () => {
 
           <br />
 
-{/* Waveform Animada com o Equalizador Retrô */}
+{/* Waveform Animada com as BARS */}
 <div className="mt-2 flex items-end gap-[2px] h-6 overflow-hidden eq" aria-hidden>
-  {Array.from({ length: 28 }).map((_, i) => (
+  {[0, 1, 2, 3, 4, 5, 6].map((i) => (
     <span
       key={i}
       className={`eq-bar w-[3px] bg-primary transition-all duration-300 ${isPlaying ? "eq-bar--on" : ""}`}
       style={{
         height: `${20 + ((i * 37) % 80)}%`,
         opacity: 0.4 + ((i * 13) % 60) / 100,
-        animationDelay: `${(i % 7) * 0.11}s`,
+        animationDelay: `${i * 0.11}s`,
         animationDuration: `${0.5 + (i % 4) * 0.12}s`
       }}
     />
