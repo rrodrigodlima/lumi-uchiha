@@ -430,7 +430,7 @@ const Index = () => {
         return videoFilters.some((tag) => v.tags?.includes(tag));
       })
       // Limita estritamente a exibição a apenas 9 vídeos na tela
-      .slice(0, 9) 
+      .slice(0, 12) 
       .map((v) => (
         <button
           key={v.id}
